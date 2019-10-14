@@ -1,0 +1,15 @@
+type Query {
+  hello: String
+  bye: String
+}
+
+type Mutation {
+  register(email: String!, userName: String!, password: String!): UserPayload
+  login(email: String!, password: String!): UserPayload
+}
+
+type UserPayload {
+  userName: String!
+  accessToken: String!
+  email: String!
+}

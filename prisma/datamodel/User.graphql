@@ -1,0 +1,9 @@
+type User {
+  id: ID! @id
+  userName: String! @unique
+  email: String! @unique
+  password: String!
+  tokenVersion: Int @default(value: 0)
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@wys/server",
+  "version": "1.0.0",
+  "author": {
+    "email": "mohamedelsonny5@gmail.com",
+    "name": "Mohamed Gamal"
+  },
+  "description": "Application for watching ourselfes",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "cd prisma && prisma deploy -e ../.env",
+    "delete": "cd prisma && prisma delete -e ../.env -f",
+    "reset": "cd prisma && prisma reset -e ../.env -f",
+    "dev": "env-cmd --file ./.env nodemon -e js,graphql index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-express": "^2.9.6",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-import": "^0.7.1",
+    "jsonwebtoken": "^8.5.1",
+    "prisma-binding": "^2.3.16"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.0.1",
+    "nodemon": "^1.19.3"
+  }
+}
