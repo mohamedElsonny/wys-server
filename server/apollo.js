@@ -13,7 +13,8 @@ const server = new ApolloServer({
 })
 
 server.applyMiddleware({
-  app
+  app,
+  cors: false
 })
 
 module.exports = server

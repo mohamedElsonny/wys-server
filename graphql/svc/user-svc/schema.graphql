@@ -1,11 +1,23 @@
+scalar DateTime
+
 type Query {
   hello: String
   bye: String
+  me: Me
 }
 
 type Mutation {
   register(email: String!, userName: String!, password: String!): UserPayload
   login(email: String!, password: String!): UserPayload
+  logout: Boolean!
+}
+
+type Me {
+  id: ID!
+  email: String!
+  userName: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserPayload {

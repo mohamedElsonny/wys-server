@@ -11,6 +11,16 @@ const resolvers = {
   Query: {
     bye: authenticated((_, args, context, info) => {
       return 'Bye'
+    }),
+    me: authenticated((_, args, { userID, db }, info) => {
+      return db.query.user(
+        {
+          where: {
+            id: userID
+          }
+        },
+        info
+      )
     })
   },
   Mutation: {
@@ -38,7 +48,8 @@ const resolvers = {
       }`
       )
       res.cookie('wys-jid', createRefreshToken(user), {
-        httpOnly: true
+        httpOnly: true,
+        path: '/refresh_token'
       })
       return {
         email,
@@ -62,7 +73,8 @@ const resolvers = {
       if (!valid) throw new Error('bad password')
 
       res.cookie('wys-jid', createRefreshToken(user), {
-        httpOnly: true
+        httpOnly: true,
+        path: '/refresh_token'
       })
 
       return {
@@ -70,6 +82,13 @@ const resolvers = {
         userName: user.userName,
         accessToken: createAccessToken(user)
       }
+    },
+    logout: (_, args, { res }, info) => {
+      res.cookie('wys-jid', '', {
+        httpOnly: true,
+        path: '/refresh_token'
+      })
+      return true
     }
   }
 }

@@ -14,6 +14,7 @@ const app = express()
 
 app.use(
   cors({
+    credentials: true,
     origin: (origin, callback) => {
       if (whitelist.indexOf(origin) !== -1 || origin === undefined) {
         callback(null, true)
@@ -58,7 +59,8 @@ app.post('/refresh_token', async (req, res) => {
   }
 
   res.cookie('wys-jid', createRefreshToken(user), {
-    httpOnly: true
+    httpOnly: true,
+    path: '/refresh_token'
   })
 
   return res.send({
