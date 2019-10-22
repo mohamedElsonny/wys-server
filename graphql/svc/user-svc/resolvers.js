@@ -5,14 +5,12 @@ const {
   createAccessToken
 } = require('../../../helpers/createTokens')
 
-const authenticated = require('./middlewares/authenticated')
-
 const resolvers = {
   Query: {
-    bye: authenticated((_, args, context, info) => {
+    bye: (_, args, context, info) => {
       return 'Bye'
-    }),
-    me: authenticated((_, args, { userID, db }, info) => {
+    },
+    me: (_, args, { userID, db }, info) => {
       return db.query.user(
         {
           where: {
@@ -21,7 +19,7 @@ const resolvers = {
         },
         info
       )
-    })
+    }
   },
   Mutation: {
     register: async (_, { userName, email, password }, { db, res }, info) => {
